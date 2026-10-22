@@ -1,0 +1,10 @@
+{
+  "train_rows": 16480,
+  "test_rows": 4120,
+  "test_fraud": 112,
+  "pr_auc": 0.9984,
+  "recall_at_1pct_fpr": 1.0,
+  "precision_at_score60": 0.982,
+  "recall_at_score60": 0.9732,
+  "note": "Synthetic data. Metrics are optimistic and are NOT a claim about real-world performance."
+}
