@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 
-const API = import.meta.env?.VITE_API || "http://localhost:8000";
+const API = import.meta.env?.VITE_API || (import.meta.env.DEV ? "http://localhost:8000" : "");
 
 async function api(path, method = "GET", body) {
+  if (!API) {
+    throw new Error("This frontend-only deployment has no backend API configured.");
+  }
   const res = await fetch(API + path, {
     method,
     headers: { "Content-Type": "application/json" },

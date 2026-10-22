@@ -1,5 +1,6 @@
 """ScamShield API. Run: uvicorn main:app --reload --port 8000   (docs at http://localhost:8000/docs)"""
 import json
+import os
 import time
 from typing import Optional
 
@@ -11,7 +12,12 @@ from engine import Engine
 from scamtext import classify
 
 app = FastAPI(title="ScamShield API", version="1.0")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+cors_origins = [
+    origin.strip()
+    for origin in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+    if origin.strip()
+]
+app.add_middleware(CORSMiddleware, allow_origins=cors_origins, allow_methods=["*"], allow_headers=["*"])
 engine = Engine()
 
 

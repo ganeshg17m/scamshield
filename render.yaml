@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: scamshield-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && python generate_data.py && python train.py
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: CORS_ORIGINS
+        value: https://ganeshg17m.github.io
+      - key: GEMINI_API_KEY
+        sync: false

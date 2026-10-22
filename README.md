@@ -30,3 +30,24 @@ npm install
 npm run dev
 ```
 Open http://localhost:5173
+
+## Deploy online
+
+GitHub Pages hosts static frontend files only; it does not run this project's
+FastAPI backend. With a frontend-only deployment the site shell can load, but
+live alerts, transaction scoring, the mule graph, message checking, metrics,
+cases, and AI copilot require an API and will not function. No API URL or API
+key is needed for this frontend-only deployment.
+
+1. Push the project to a GitHub repository named `scamshield` under
+   `ganeshg17m`.
+2. Open the repository's **Settings → Pages** and select **GitHub Actions** as
+   the build and deployment source.
+3. Open **Actions**, select **Deploy frontend to GitHub Pages**, and choose
+   **Run workflow** on the `main` branch. The workflow also runs on pushes that
+   change the frontend or its deployment workflow.
+4. After the workflow succeeds, visit
+   `https://ganeshg17m.github.io/scamshield/`.
+
+If the repository name or GitHub account differs, update the Vite base path in
+`frontend/vite.config.js`.
